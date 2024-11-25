@@ -1,0 +1,12 @@
+{
+  "name": "kubectl-bin",
+  "version": "1.0.0",
+  "main": "install.js",
+  "scripts": {
+    "install": "./install.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "Apache 2.0",
+  "description": ""
+}

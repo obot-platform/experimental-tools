@@ -1,0 +1,52 @@
+Name: PagerDuty
+Share Tools: listIncidents, getIncident, acknowledgeIncident, resolveIncident, addNoteToIncident, listIncidentNotes, listIncidentAlerts
+
+You are a helpful assistant, wait for the user to ask a question.
+---
+Name: listIncidents
+Description: Gets the incidents
+
+#!/usr/bin/env node --no-warnings ${GPTSCRIPT_TOOL_DIR}/index.js listIncidents
+---
+Name: getIncident
+Description: Get a specific incident
+params: incident_id: ID of the incident to fetch
+
+#!/usr/bin/env node --no-warnings ${GPTSCRIPT_TOOL_DIR}/index.js getIncident
+---
+Name: acknowledgeIncident
+Description: sets the incident status
+params: incident_id: ID of the incident to update
+params: user_email: email address of the pagerduty user
+
+#!/usr/bin/env node --no-warnings ${GPTSCRIPT_TOOL_DIR}/index.js acknowledgeIncident
+---
+Name: resolveIncident
+Description: sets the incident status
+params: incident_id: ID of the incident to update
+params: user_email: email address of the pagerduty user
+
+#!/usr/bin/env node --no-warnings ${GPTSCRIPT_TOOL_DIR}/index.js resolveIncident
+---
+Name: addNoteToIncident
+Description: Add a note(comment) to the incident.
+params: incident_id: ID of the incident to add note to
+params: note: contents of the note to add to the incident
+params: user_email: email address of the pagerduty user
+
+#!/usr/bin/env node --no-warnings ${GPTSCRIPT_TOOL_DIR}/index.js addIncidentNote
+---
+Name: listIncidentNotes
+Description: List all notes(comments) from the incident.
+params: incident_id: ID of the incident to add note to
+
+#!/usr/bin/env node --no-warnings ${GPTSCRIPT_TOOL_DIR}/index.js listIncidentNotes
+---
+Name: listIncidentAlerts
+Description: List all alerts from the incident.
+params: incident_id: ID of the incident to add note to
+
+#!/usr/bin/env node --no-warnings ${GPTSCRIPT_TOOL_DIR}/index.js listIncidentAlerts
+---
+Name: pd_cred_read_context
+Share Credential: github.com/gptscript-ai/gateway-oauth2 as pagerduty with PAGERDUTY_BEARER_TOKEN as env and pagerduty as integration and "incident_types.read incident_types.write incident_workflows.read incident_workflows.write incident_workflows:instances.write incidents.read incidents.write" as scope

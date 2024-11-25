@@ -1,0 +1,35 @@
+Name: kubectl
+Context: env
+Description: Use this tool to execute kubectl commands
+Params: command: The complete set of flags and args minus --kubeconfig
+
+#!/usr/bin/env bash -c "${GPTSCRIPT_WORKSPACE_DIR}/bin/kubectl --kubeconfig=${GPTSCRIPT_WORKSPACE_DIR}/etc/kubeconfig.yaml ${COMMAND}"
+
+---
+Name: env
+Context: install
+
+#!/bin/bash
+
+# Check if KUBECONFIG_FILE is set and has contents
+if [[ -n "$KUBECONFIG_FILE" ]]; then
+    # Define the output directory and file path
+    output_dir="${GPTSCRIPT_WORKSPACE_DIR}/etc"
+    output_file="${output_dir}/kubeconfig.yaml"
+
+    # Create the directory if it doesn't exist
+    mkdir -p "$output_dir"
+
+    # Base64 decode contents of KUBECONFIG_FILE and write to the output file
+    echo "$KUBECONFIG_FILE" | base64 -d > "$output_file"
+
+    echo "KUBECONFIG_FILE has been decoded and located at $output_file"
+else
+    echo "KUBECONFIG_FILE is not set, empty, or doesn't contain any data."
+fi
+
+---
+Name: install
+
+#!/usr/bin/env node ${GPTSCRIPT_TOOL_DIR}/install.js
+
