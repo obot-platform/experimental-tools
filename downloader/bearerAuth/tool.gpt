@@ -1,0 +1,6 @@
+Name: BearerAuthDownloader
+Description: Download a file using bearer auth to the workspace.
+Params: url: Url to download the file from.
+Params: filename: name of file to save as in the workspace
+
+#!/usr/bin/env node ${GPTSCRIPT_TOOL_DIR}/downloader.mjs ${URL} ${FILENAME}

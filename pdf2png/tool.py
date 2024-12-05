@@ -84,7 +84,7 @@ async def save_to_gptscript_workspace(filepath: str, content: bytes | str) -> No
 
 
 def create_scratch_dir() -> str:
-    gptscript_tool_dir = os.getenv("GPTSCRIPT_WORKSPACE_DIR")
+    gptscript_tool_dir = os.getenv("GPTSCRIPT_TOOL_DIR")
     path = os.path.join(gptscript_tool_dir, "scratch")
     os.makedirs(path, exist_ok=True)
     return path
