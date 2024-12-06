@@ -1,0 +1,10 @@
+{
+  "name": "bearerAuthDownloader", 
+  "version": "0.0.1",
+  "type": "module",
+  "author": "acorn labs",
+  "dependencies": {
+    "@gptscript-ai/gptscript": "github:gptscript-ai/node-gptscript#d4b222c34e757b62429dc43ae9cc44aa3f6c9700",
+    "axios": "^1.7.9"
+  }
+}

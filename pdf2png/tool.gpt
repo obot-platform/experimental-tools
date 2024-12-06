@@ -1,0 +1,5 @@
+Name: pdf2png
+Description: This is the tool to convert pdfs for images that can be processed by other tools.
+Params: pdf_file: The file to convert
+
+#!/usr/bin/env python ${GPTSCRIPT_TOOL_DIR}/tool.py
