@@ -2,7 +2,7 @@ Name: Key Value Store
 Description: Adds the ability to use a KV store to hold data between LLM calls.
 Type: context
 Tool: server
-Share Tools: kv_list, kv_put, kv_get
+Share Tools: kv_list, kv_put, kv_get, kv_delete
 Context: kv_list
 
 #!/bin/bash
@@ -51,6 +51,14 @@ Tool: server
 Params: key: The key name to retrieve data from
 
 #!http://server.daemon.gptscript.local/api/v1/get
+
+---
+Name: kv_delete
+Description: Get the value from the store for a specific key
+Tool: server
+Params: key: The key name to retrieve data from
+
+#!http://server.daemon.gptscript.local/api/v1/delete
 
 ---
 Name: output_filter
