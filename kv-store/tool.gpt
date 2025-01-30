@@ -1,0 +1,68 @@
+Name: Key Value Store
+Description: Adds the ability to use a KV store to hold data between LLM calls.
+Type: context
+Tool: server
+Share Tools: kv_list, kv_put, kv_get, kv_delete
+Context: kv_list
+
+#!/bin/bash
+
+KEYS="${GPTSCRIPT_CONTEXT}"
+if [ -z "${GPTSCRIPT_CONTEXT}" ]; then
+  KEYS="No Keys in Store"
+fi
+
+cat << EOF
+# START INSTRUCTIONS: "KV Store"
+
+You have the ability to read, write, list and delete key value data specific to your suer. Use 
+the given kv_get, kv_list, kv_put, kv_delete tools to interact with the data. 
+Here are the currently available keys.
+
+$KEYS
+# END OF INSTRUCTIONS: "KV Store"
+EOF
+
+---
+Name: server
+
+#!sys.daemon (path=/api/ready) ${GPTSCRIPT_TOOL_DIR}/bin/gptscript-go-tool server
+
+---
+Name: kv_list
+Description: List the contents of the kv store.
+Tool: server
+
+#!http://server.daemon.gptscript.local/api/v1/list
+
+---
+Name: kv_put
+Description: Set a key to a value in the data store.
+Tool: server
+Params: key: the key name to store the data under.
+Params: value: the data content to store.
+
+#!http://server.daemon.gptscript.local/api/v1/put
+
+---
+Name: kv_get
+Description: Get the value from the store for a specific key
+Tool: server
+Params: key: The key name to retrieve data from
+
+#!http://server.daemon.gptscript.local/api/v1/get
+
+---
+Name: kv_delete
+Description: Get the value from the store for a specific key
+Tool: server
+Params: key: The key name to retrieve data from
+
+#!http://server.daemon.gptscript.local/api/v1/delete
+
+---
+Name: output_filter
+Description: To be used as an Output filter
+Tool: server
+
+#!http://server.daemon.gptscript.local/api/v1/output-filter
